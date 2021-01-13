@@ -12,8 +12,14 @@ void main() {
 
   test('deve preencher a variável todos', () async {
     when(repository.fetchTodos()).thenAnswer((_) async => [TodoModel()]);
-
     await controller.start();
+    expect(controller.state, HomeState.success);
     expect(controller.todos.isNotEmpty, true);
+  });
+
+  test('deve modificar o estado para error se a requisição falha', () async {
+    when(repository.fetchTodos()).thenThrow(Exception());
+    await controller.start();
+    expect(controller.state, HomeState.error);
   });
 }
