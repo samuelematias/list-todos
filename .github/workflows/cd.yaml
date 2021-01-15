@@ -22,9 +22,6 @@ jobs:
           flutter build web  --web-renderer html --release
           #flutter build web --web-renderer canvaskit --release
           #flutter build web --release
-      - name: Execute Service Worker command
-        run: |
-          sed -i '/index.html/d' build/web/flutter_service_worker.js
       - name: Deploy web app
         uses: peaceiris/actions-gh-pages@v3
         with:
