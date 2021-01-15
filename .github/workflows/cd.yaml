@@ -1,4 +1,4 @@
-name: CD: Build Web and Deploy on GitHub Pages
+name: CD -  Build Web and Deploy on GitHub Pages
 on:
   push:
     branches:
