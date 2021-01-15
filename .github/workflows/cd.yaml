@@ -2,7 +2,7 @@ name: CD -  Build Web and Deploy on GitHub Pages
 on:
   push:
     branches:
-      - main
+      - develop
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
