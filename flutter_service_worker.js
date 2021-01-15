@@ -12,7 +12,8 @@ const RESOURCES = {
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "main.dart.js": "476ee2558ddd3b862c690ab34bbbc020",
 "manifest.json": "2d69bfcdb68d44d29a02360192cdc867",
-"/": "cc9a75846a70d6362b6d07c6f33bb8da",
+"index.html": "f2c488510bb5803b8f6d9d5b6e1a8daf",
+"/": "f2c488510bb5803b8f6d9d5b6e1a8daf",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1"
 };
@@ -22,6 +23,7 @@ const RESOURCES = {
 const CORE = [
   "/",
 "main.dart.js",
+"index.html",
 "assets/NOTICES",
 "assets/AssetManifest.json",
 "assets/FontManifest.json"];
@@ -101,6 +103,7 @@ self.addEventListener("fetch", (event) => {
   }
   var origin = self.location.origin;
   var key = event.request.url.substring(origin.length + 1);
+  // Redirect URLs to the index.html
   if (key.indexOf('?v=') != -1) {
     key = key.split('?v=')[0];
   }
@@ -112,6 +115,7 @@ self.addEventListener("fetch", (event) => {
   if (!RESOURCES[key]) {
     return;
   }
+  // If the URL is the index.html, perform an online-first request.
   if (key == '/') {
     return onlineFirst(event);
   }
